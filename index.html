@@ -159,17 +159,18 @@
       pointer-events: none;
     }
     .hero-logo {
-      /* Desktop: wide extended image at 1800-2400px so rays bleed off viewport */
-      width: clamp(1800px, 100vw, 2400px);
+      width: clamp(480px, 60vw, 720px);
       flex-shrink: 0;
       display: block;
       filter: drop-shadow(0 20px 60px rgba(91, 125, 255, 0.18));
       animation: floatLogo 8s ease-in-out infinite;
+      /* Soft fade on left/right so rainbow + beam dissolve gracefully into the bg */
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+              mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
     }
-    /* Mobile: <picture> swaps to the clean logo. Display it big so it overflows and gets cut. */
-    @media (max-width: 760px) {
+    @media (max-width: 520px) {
       .hero-logo {
-        width: 720px;
+        width: min(95vw, 480px);
       }
     }
     @keyframes floatLogo {
@@ -622,10 +623,7 @@
 
   <header class="hero">
           <div class="hero-logo-wrap">
-        <picture>
-          <source media="(min-width: 760px)" srcset="logo-wide.png" />
-          <img src="logo-clean.png" alt="Clearly — Your organizational AI" class="hero-logo" />
-        </picture>
+        <img src="logo-clean.png" alt="Clearly — Your organizational AI" class="hero-logo" />
       </div>
       <div class="hero-inner">
       
